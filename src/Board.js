@@ -3,50 +3,43 @@ import Square from './Square'
 import './index.css'
 
 class Board extends React.Component {
-    constructor () {
-        super();
-        this.state = {
-            squares: Array(9).fill(null)
-        }
-    } 
-    handleClick(i) {
-        const squares = this.state.squares.slice();
-        squares[i] = 'X'
-        this.setState({squares})
-    }
+    
     renderSquare(i) {
         return (
             <Square 
-            onClick = {() => this.handleClick(i)}
-            value={this.state.squares[i]} />
+            onClick = {() => this.props.onClick(i)}
+            value={this.props.squares[i]} 
+            key={i}
+            />
         )
     }
 
     render() {
-        const status = 'Next Player : X'
         return (
-            <div>
-                <div className="status">{status}</div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
+            <table className="board">
+                <tbody>
+                    <tr className="board-row">
+                        {[0,1,2].map((index) => {
+                            return this.renderSquare(index)
+                        })} 
+                    </tr>
+                    <tr className="board-row">
+                        {[3,4,5].map((index) => {
+                            return this.renderSquare(index)
+                        })} 
+                    </tr>
+                    <tr className="board-row">
+                            {[6,7,8].map((index) => {
+                            return this.renderSquare(index)
+                        })} 
+                    </tr>
 
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
-             </div>
+                </tbody>
+            </table>
         )
     }
 }
+
+
 
 export default Board
