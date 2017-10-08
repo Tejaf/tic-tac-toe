@@ -1,2 +1,2 @@
 # tic-tac-toe
-This is a game of  'X's and 'O's
+This is a game of  'X's and 'O's built using React
